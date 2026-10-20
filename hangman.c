@@ -15,16 +15,12 @@ int main()
             return 1;
         }
 
-        if (guess == secret[0])
-        {
-            printf("Treffer %c", secret);
+        int hits = 0;
+        for (int i = 0; i < sizeof(secret) - 1; i++) {
+            if ((secret[i]) == guess) {
+                hits++;
+            }
         }
-        else
-        {
-
-            printf("Fail");
-        }
-        versuche -= 1;
     }
 
     return 0;
