@@ -1,8 +1,31 @@
 #include <stdio.h>
 
-int main(){
-    printf ("Hello World");
+int main()
+{
+    int versuche = 10;
+    while (versuche > 0)
+    {
+
+        const char secret[] = "REDBULL4EVER";
+        char guess;
+        printf("Buchstabe: ");
+        if (scanf("%c", &guess) != 1)
+        {
+            printf("Falsche Eingabe\n");
+            return 1;
+        }
+
+        if (guess == secret[0])
+        {
+            printf("Treffer %c", secret);
+        }
+        else
+        {
+
+            printf("Fail");
+        }
+        versuche -= 1;
+    }
 
     return 0;
-
 }
