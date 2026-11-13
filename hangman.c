@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 <<<<<<< HEAD
@@ -58,60 +59,76 @@ int main()
 =======
 int main()
 {
-<<<<<<< HEAD
-    int hints = 0;
     const char secret[] = "1234";
     const int len = sizeof(secret) - 1;
+
     char guessed[sizeof(secret) - 1];
-    int hits = 0;
-    char guess;
+    int versuche = 10;
 
-    for (int i =0; i < len; i++) {
-        printf("n");
-    }
+    // Alle Stellen zunächst mit '_' belegen
+    int fertig = 1;
 
-
-    printf("Rate eine Zahl: ");
-    if (scanf(" %c", &guess) !=1 )
-    {
-        printf("Keine Eingabe\n");
-        return 1;
-    }
     for (int i = 0; i < len; i++)
     {
-     if ((secret[i]) == guessed)
-     {
-        hits++;
-
-     }
-     
+        if (guessed[i] == '_')
+        {
+            fertig = 0;
+            break;
+        }
     }
-    
-        printf("Treffer: %d\n", hints);
 
-=======
-    int versuche = 10;
     while (versuche > 0)
     {
-
-        const char secret[] = "REDBULL4EVER";
+        int hits = 0;
         char guess;
-        printf("Buchstabe: ");
-        if (scanf("%c", &guess) != 1)
+
+        // Aktuellen Fortschritt anzeigen
+        printf("\nGeheimer Code: ");
+
+        for (int i = 0; i < len; i++)
+        {
+            printf("%c ", guessed[i]);
+        }
+
+        if (guessed[0] != '_' &&
+            guessed[1] != '_' &&
+            guessed[2] != '_' &&
+            guessed[3] != '_')
+        {
+            printf("\nDu hast den Code erraten!\n");
+            return 0;
+        }
+
+        printf("\nBuchstabe/Ziffer: ");
+
+        if (scanf(" %c", &guess) != 1)
         {
             printf("Falsche Eingabe\n");
             return 1;
         }
 
-        int hits = 0;
-        for (int i = 0; i < sizeof(secret) - 1; i++) {
-            if ((secret[i]) == guess) {
+        // Eingabe mit dem geheimen Code vergleichen
+        for (int i = 0; i < len; i++)
+        {
+            if (secret[i] == guess)
+            {
+                guessed[i] = guess;
                 hits++;
             }
         }
+
+        printf("Treffer: %d\n", hits);
+
+        versuche--;
+        printf("Verbleibende Versuche: %d\n", versuche);
     }
->>>>>>> ef4fd6b993adee8e8904e21bfd21ee457c9f23b2
+
+    printf("\nLeider verloren! Der Code war %s\n", secret);
 
     return 0;
+<<<<<<< Updated upstream
 }
 >>>>>>> bc6e5caf2f54e56ab1c0646cd3c94f3feaa70a8c
+=======
+}
+>>>>>>> Stashed changes
